@@ -1,0 +1,34 @@
+# ===== Java / Maven =====
+target/
+*.class
+*.jar
+*.war
+!.mvn/wrapper/maven-wrapper.jar
+*.log
+
+# ===== IDE =====
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ===== Node / Frontend =====
+node_modules/
+dist/
+.npm/
+*.tgz
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+*.bak
+
+# ===== Env =====
+.env
+.env.local
+.env.*.local

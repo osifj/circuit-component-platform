@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlyjcsppydspt.api.mapper.DlJpixcMatchMapper">
+  <resultMap id="BaseResultMap" type="com.dlyjcsppydspt.api.domain.DlJpixcMatch">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="dl_tjpuksl_rated_voltage2" jdbcType="VARCHAR" property="dlyjcsppydsptRatedVoltage2"/>
+    <result column="dl_tjpuksl_component_name" jdbcType="VARCHAR" property="dlyjcsppydsptComponentName"/>
+    <result column="dl_tjpuksl_rated_current" jdbcType="VARCHAR" property="dlyjcsppydsptRatedCurrent"/>
+    <result column="dl_tjpuksl_rated_voltage" jdbcType="VARCHAR" property="dlyjcsppydsptRatedVoltage"/>
+    <result column="dl_tjpuksl_rated_power" jdbcType="VARCHAR" property="dlyjcsppydsptRatedPower"/>
+    <result column="dl_tjpuksl_number" jdbcType="VARCHAR" property="dlyjcsppydsptNumber"/>
+  </resultMap>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT * FROM dl_jpixc_match WHERE id = #{id}
+  </select>
+
+  <select id="selectByMap" resultMap="BaseResultMap">
+    SELECT * FROM dl_jpixc_match
+    <where>
+      <if test="componentName != null and componentName != ''">
+        AND dl_tjpuksl_component_name LIKE CONCAT('%', #{componentName}, '%')
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    DELETE FROM dl_jpixc_match WHERE id = #{id}
+  </delete>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.dlyjcsppydspt.api.domain.DlJpixcMatch" useGeneratedKeys="true">
+    INSERT INTO dl_jpixc_match (
+      dl_tjpuksl_rated_voltage2, dl_tjpuksl_component_name, dl_tjpuksl_rated_current,
+      dl_tjpuksl_rated_voltage, dl_tjpuksl_rated_power, dl_tjpuksl_number
+    ) VALUES (
+      #{dlyjcsppydsptRatedVoltage2}, #{dlyjcsppydsptComponentName}, #{dlyjcsppydsptRatedCurrent},
+      #{dlyjcsppydsptRatedVoltage}, #{dlyjcsppydsptRatedPower}, #{dlyjcsppydsptNumber}
+    )
+  </insert>
+
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.dlyjcsppydspt.api.domain.DlJpixcMatch" useGeneratedKeys="true">
+    INSERT INTO dl_jpixc_match
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dlyjcsppydsptRatedVoltage2 != null">dl_tjpuksl_rated_voltage2,</if>
+      <if test="dlyjcsppydsptComponentName != null">dl_tjpuksl_component_name,</if>
+      <if test="dlyjcsppydsptRatedCurrent != null">dl_tjpuksl_rated_current,</if>
+      <if test="dlyjcsppydsptRatedVoltage != null">dl_tjpuksl_rated_voltage,</if>
+      <if test="dlyjcsppydsptRatedPower != null">dl_tjpuksl_rated_power,</if>
+      <if test="dlyjcsppydsptNumber != null">dl_tjpuksl_number,</if>
+    </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+      <if test="dlyjcsppydsptRatedVoltage2 != null">#{dlyjcsppydsptRatedVoltage2},</if>
+      <if test="dlyjcsppydsptComponentName != null">#{dlyjcsppydsptComponentName},</if>
+      <if test="dlyjcsppydsptRatedCurrent != null">#{dlyjcsppydsptRatedCurrent},</if>
+      <if test="dlyjcsppydsptRatedVoltage != null">#{dlyjcsppydsptRatedVoltage},</if>
+      <if test="dlyjcsppydsptRatedPower != null">#{dlyjcsppydsptRatedPower},</if>
+      <if test="dlyjcsppydsptNumber != null">#{dlyjcsppydsptNumber},</if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlyjcsppydspt.api.domain.DlJpixcMatch">
+    UPDATE dl_jpixc_match
+    <set>
+      <if test="dlyjcsppydsptRatedVoltage2 != null">dl_tjpuksl_rated_voltage2 = #{dlyjcsppydsptRatedVoltage2},</if>
+      <if test="dlyjcsppydsptComponentName != null">dl_tjpuksl_component_name = #{dlyjcsppydsptComponentName},</if>
+      <if test="dlyjcsppydsptRatedCurrent != null">dl_tjpuksl_rated_current = #{dlyjcsppydsptRatedCurrent},</if>
+      <if test="dlyjcsppydsptRatedVoltage != null">dl_tjpuksl_rated_voltage = #{dlyjcsppydsptRatedVoltage},</if>
+      <if test="dlyjcsppydsptRatedPower != null">dl_tjpuksl_rated_power = #{dlyjcsppydsptRatedPower},</if>
+      <if test="dlyjcsppydsptNumber != null">dl_tjpuksl_number = #{dlyjcsppydsptNumber},</if>
+    </set>
+    WHERE id = #{id}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.dlyjcsppydspt.api.domain.DlJpixcMatch">
+    UPDATE dl_jpixc_match SET
+      dl_tjpuksl_rated_voltage2 = #{dlyjcsppydsptRatedVoltage2},
+      dl_tjpuksl_component_name = #{dlyjcsppydsptComponentName},
+      dl_tjpuksl_rated_current = #{dlyjcsppydsptRatedCurrent},
+      dl_tjpuksl_rated_voltage = #{dlyjcsppydsptRatedVoltage},
+      dl_tjpuksl_rated_power = #{dlyjcsppydsptRatedPower},
+      dl_tjpuksl_number = #{dlyjcsppydsptNumber}
+    WHERE id = #{id}
+  </update>
+
+  <insert id="insertList">
+    INSERT INTO dl_jpixc_match (
+      dl_tjpuksl_rated_voltage2, dl_tjpuksl_component_name, dl_tjpuksl_rated_current,
+      dl_tjpuksl_rated_voltage, dl_tjpuksl_rated_power, dl_tjpuksl_number
+    ) VALUES
+    <foreach collection="list" item="item" separator=",">
+    (
+      #{item.dlyjcsppydsptRatedVoltage2}, #{item.dlyjcsppydsptComponentName}, #{item.dlyjcsppydsptRatedCurrent},
+      #{item.dlyjcsppydsptRatedVoltage}, #{item.dlyjcsppydsptRatedPower}, #{item.dlyjcsppydsptNumber}
+    )
+    </foreach>
+  </insert>
+</mapper>

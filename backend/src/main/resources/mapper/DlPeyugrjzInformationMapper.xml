@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlyjcsppydspt.api.mapper.DlPeyugrjzInformationMapper">
+  <resultMap id="BaseResultMap" type="com.dlyjcsppydspt.api.domain.DlPeyugrjzInformation">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="dl_sdsgks_rated_power" jdbcType="VARCHAR" property="dlyjcsppydsptRatedPower"/>
+    <result column="dl_sdsgks_rated_current2" jdbcType="VARCHAR" property="dlyjcsppydsptRatedCurrent2"/>
+    <result column="dl_sdsgks_number" jdbcType="VARCHAR" property="dlyjcsppydsptNumber"/>
+    <result column="dl_sdsgks_rated_voltage" jdbcType="VARCHAR" property="dlyjcsppydsptRatedVoltage"/>
+    <result column="dl_sdsgks_rated_voltage2" jdbcType="VARCHAR" property="dlyjcsppydsptRatedVoltage2"/>
+    <result column="dl_sdsgks_debugging_results" jdbcType="VARCHAR" property="dlyjcsppydsptDebuggingResults"/>
+    <result column="dl_sdsgks_rated_current" jdbcType="VARCHAR" property="dlyjcsppydsptRatedCurrent"/>
+    <result column="dl_sdsgks_type" jdbcType="VARCHAR" property="dlyjcsppydsptType"/>
+    <result column="dl_sdsgks_debugging_personnel" jdbcType="VARCHAR" property="dlyjcsppydsptDebuggingPersonnel"/>
+    <result column="dl_sdsgks_installation_position" jdbcType="VARCHAR" property="dlyjcsppydsptInstallationPosition"/>
+    <result column="dl_sdsgks_rated_power2" jdbcType="VARCHAR" property="dlyjcsppydsptRatedPower2"/>
+    <result column="dl_sdsgks_name" jdbcType="VARCHAR" property="dlyjcsppydsptName"/>
+    <result column="dl_sdsgks_installation_time" jdbcType="TIMESTAMP" property="dlyjcsppydsptInstallationTime"/>
+  </resultMap>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT * FROM dl_peyugrjz_information WHERE id = #{id}
+  </select>
+
+  <select id="selectByAll" resultMap="BaseResultMap">
+    SELECT * FROM dl_peyugrjz_information
+    <where>
+      <if test="dlyjcsppydsptNumber != null and dlyjcsppydsptNumber != ''">
+        AND dl_sdsgks_number = #{dlyjcsppydsptNumber}
+      </if>
+      <if test="dlyjcsppydsptName != null and dlyjcsppydsptName != ''">
+        AND dl_sdsgks_name LIKE CONCAT('%', #{dlyjcsppydsptName}, '%')
+      </if>
+      <if test="dlyjcsppydsptType != null and dlyjcsppydsptType != ''">
+        AND dl_sdsgks_type = #{dlyjcsppydsptType}
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    DELETE FROM dl_peyugrjz_information WHERE id = #{id}
+  </delete>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.dlyjcsppydspt.api.domain.DlPeyugrjzInformation" useGeneratedKeys="true">
+    INSERT INTO dl_peyugrjz_information (
+      dl_sdsgks_rated_power, dl_sdsgks_rated_current2, dl_sdsgks_number,
+      dl_sdsgks_rated_voltage, dl_sdsgks_rated_voltage2, dl_sdsgks_debugging_results,
+      dl_sdsgks_rated_current, dl_sdsgks_type, dl_sdsgks_debugging_personnel,
+      dl_sdsgks_installation_position, dl_sdsgks_rated_power2, dl_sdsgks_name,
+      dl_sdsgks_installation_time
+    ) VALUES (
+      #{dlyjcsppydsptRatedPower}, #{dlyjcsppydsptRatedCurrent2}, #{dlyjcsppydsptNumber},
+      #{dlyjcsppydsptRatedVoltage}, #{dlyjcsppydsptRatedVoltage2}, #{dlyjcsppydsptDebuggingResults},
+      #{dlyjcsppydsptRatedCurrent}, #{dlyjcsppydsptType}, #{dlyjcsppydsptDebuggingPersonnel},
+      #{dlyjcsppydsptInstallationPosition}, #{dlyjcsppydsptRatedPower2}, #{dlyjcsppydsptName},
+      #{dlyjcsppydsptInstallationTime}
+    )
+  </insert>
+
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.dlyjcsppydspt.api.domain.DlPeyugrjzInformation" useGeneratedKeys="true">
+    INSERT INTO dl_peyugrjz_information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dlyjcsppydsptRatedPower != null">dl_sdsgks_rated_power,</if>
+      <if test="dlyjcsppydsptRatedCurrent2 != null">dl_sdsgks_rated_current2,</if>
+      <if test="dlyjcsppydsptNumber != null">dl_sdsgks_number,</if>
+      <if test="dlyjcsppydsptRatedVoltage != null">dl_sdsgks_rated_voltage,</if>
+      <if test="dlyjcsppydsptRatedVoltage2 != null">dl_sdsgks_rated_voltage2,</if>
+      <if test="dlyjcsppydsptDebuggingResults != null">dl_sdsgks_debugging_results,</if>
+      <if test="dlyjcsppydsptRatedCurrent != null">dl_sdsgks_rated_current,</if>
+      <if test="dlyjcsppydsptType != null">dl_sdsgks_type,</if>
+      <if test="dlyjcsppydsptDebuggingPersonnel != null">dl_sdsgks_debugging_personnel,</if>
+      <if test="dlyjcsppydsptInstallationPosition != null">dl_sdsgks_installation_position,</if>
+      <if test="dlyjcsppydsptRatedPower2 != null">dl_sdsgks_rated_power2,</if>
+      <if test="dlyjcsppydsptName != null">dl_sdsgks_name,</if>
+      <if test="dlyjcsppydsptInstallationTime != null">dl_sdsgks_installation_time,</if>
+    </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+      <if test="dlyjcsppydsptRatedPower != null">#{dlyjcsppydsptRatedPower},</if>
+      <if test="dlyjcsppydsptRatedCurrent2 != null">#{dlyjcsppydsptRatedCurrent2},</if>
+      <if test="dlyjcsppydsptNumber != null">#{dlyjcsppydsptNumber},</if>
+      <if test="dlyjcsppydsptRatedVoltage != null">#{dlyjcsppydsptRatedVoltage},</if>
+      <if test="dlyjcsppydsptRatedVoltage2 != null">#{dlyjcsppydsptRatedVoltage2},</if>
+      <if test="dlyjcsppydsptDebuggingResults != null">#{dlyjcsppydsptDebuggingResults},</if>
+      <if test="dlyjcsppydsptRatedCurrent != null">#{dlyjcsppydsptRatedCurrent},</if>
+      <if test="dlyjcsppydsptType != null">#{dlyjcsppydsptType},</if>
+      <if test="dlyjcsppydsptDebuggingPersonnel != null">#{dlyjcsppydsptDebuggingPersonnel},</if>
+      <if test="dlyjcsppydsptInstallationPosition != null">#{dlyjcsppydsptInstallationPosition},</if>
+      <if test="dlyjcsppydsptRatedPower2 != null">#{dlyjcsppydsptRatedPower2},</if>
+      <if test="dlyjcsppydsptName != null">#{dlyjcsppydsptName},</if>
+      <if test="dlyjcsppydsptInstallationTime != null">#{dlyjcsppydsptInstallationTime},</if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlyjcsppydspt.api.domain.DlPeyugrjzInformation">
+    UPDATE dl_peyugrjz_information
+    <set>
+      <if test="dlyjcsppydsptRatedPower != null">dl_sdsgks_rated_power = #{dlyjcsppydsptRatedPower},</if>
+      <if test="dlyjcsppydsptRatedCurrent2 != null">dl_sdsgks_rated_current2 = #{dlyjcsppydsptRatedCurrent2},</if>
+      <if test="dlyjcsppydsptNumber != null">dl_sdsgks_number = #{dlyjcsppydsptNumber},</if>
+      <if test="dlyjcsppydsptRatedVoltage != null">dl_sdsgks_rated_voltage = #{dlyjcsppydsptRatedVoltage},</if>
+      <if test="dlyjcsppydsptRatedVoltage2 != null">dl_sdsgks_rated_voltage2 = #{dlyjcsppydsptRatedVoltage2},</if>
+      <if test="dlyjcsppydsptDebuggingResults != null">dl_sdsgks_debugging_results = #{dlyjcsppydsptDebuggingResults},</if>
+      <if test="dlyjcsppydsptRatedCurrent != null">dl_sdsgks_rated_current = #{dlyjcsppydsptRatedCurrent},</if>
+      <if test="dlyjcsppydsptType != null">dl_sdsgks_type = #{dlyjcsppydsptType},</if>
+      <if test="dlyjcsppydsptDebuggingPersonnel != null">dl_sdsgks_debugging_personnel = #{dlyjcsppydsptDebuggingPersonnel},</if>
+      <if test="dlyjcsppydsptInstallationPosition != null">dl_sdsgks_installation_position = #{dlyjcsppydsptInstallationPosition},</if>
+      <if test="dlyjcsppydsptRatedPower2 != null">dl_sdsgks_rated_power2 = #{dlyjcsppydsptRatedPower2},</if>
+      <if test="dlyjcsppydsptName != null">dl_sdsgks_name = #{dlyjcsppydsptName},</if>
+      <if test="dlyjcsppydsptInstallationTime != null">dl_sdsgks_installation_time = #{dlyjcsppydsptInstallationTime},</if>
+    </set>
+    WHERE id = #{id}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.dlyjcsppydspt.api.domain.DlPeyugrjzInformation">
+    UPDATE dl_peyugrjz_information SET
+      dl_sdsgks_rated_power = #{dlyjcsppydsptRatedPower},
+      dl_sdsgks_rated_current2 = #{dlyjcsppydsptRatedCurrent2},
+      dl_sdsgks_number = #{dlyjcsppydsptNumber},
+      dl_sdsgks_rated_voltage = #{dlyjcsppydsptRatedVoltage},
+      dl_sdsgks_rated_voltage2 = #{dlyjcsppydsptRatedVoltage2},
+      dl_sdsgks_debugging_results = #{dlyjcsppydsptDebuggingResults},
+      dl_sdsgks_rated_current = #{dlyjcsppydsptRatedCurrent},
+      dl_sdsgks_type = #{dlyjcsppydsptType},
+      dl_sdsgks_debugging_personnel = #{dlyjcsppydsptDebuggingPersonnel},
+      dl_sdsgks_installation_position = #{dlyjcsppydsptInstallationPosition},
+      dl_sdsgks_rated_power2 = #{dlyjcsppydsptRatedPower2},
+      dl_sdsgks_name = #{dlyjcsppydsptName},
+      dl_sdsgks_installation_time = #{dlyjcsppydsptInstallationTime}
+    WHERE id = #{id}
+  </update>
+
+  <update id="updateStatus">
+    UPDATE dl_peyugrjz_information SET status = #{status} WHERE id = #{id}
+  </update>
+
+  <insert id="insertList">
+    INSERT INTO dl_peyugrjz_information (
+      dl_sdsgks_rated_power, dl_sdsgks_rated_current2, dl_sdsgks_number,
+      dl_sdsgks_rated_voltage, dl_sdsgks_rated_voltage2, dl_sdsgks_debugging_results,
+      dl_sdsgks_rated_current, dl_sdsgks_type, dl_sdsgks_debugging_personnel,
+      dl_sdsgks_installation_position, dl_sdsgks_rated_power2, dl_sdsgks_name,
+      dl_sdsgks_installation_time
+    ) VALUES
+    <foreach collection="list" item="item" separator=",">
+    (
+      #{item.dlyjcsppydsptRatedPower}, #{item.dlyjcsppydsptRatedCurrent2}, #{item.dlyjcsppydsptNumber},
+      #{item.dlyjcsppydsptRatedVoltage}, #{item.dlyjcsppydsptRatedVoltage2}, #{item.dlyjcsppydsptDebuggingResults},
+      #{item.dlyjcsppydsptRatedCurrent}, #{item.dlyjcsppydsptType}, #{item.dlyjcsppydsptDebuggingPersonnel},
+      #{item.dlyjcsppydsptInstallationPosition}, #{item.dlyjcsppydsptRatedPower2}, #{item.dlyjcsppydsptName},
+      #{item.dlyjcsppydsptInstallationTime}
+    )
+    </foreach>
+  </insert>
+</mapper>

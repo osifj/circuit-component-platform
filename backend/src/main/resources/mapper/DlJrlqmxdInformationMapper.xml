@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlyjcsppydspt.api.mapper.DlJrlqmxdInformationMapper">
+  <resultMap id="BaseResultMap" type="com.dlyjcsppydspt.api.domain.DlJrlqmxdInformation">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="dl_rbvlxtc_installation_position" jdbcType="VARCHAR" property="dlyjcsppydsptInstallationPosition"/>
+    <result column="dl_rbvlxtc_name" jdbcType="VARCHAR" property="dlyjcsppydsptName"/>
+    <result column="dl_rbvlxtc_debugging_personnel" jdbcType="VARCHAR" property="dlyjcsppydsptDebuggingPersonnel"/>
+    <result column="dl_rbvlxtc_number" jdbcType="VARCHAR" property="dlyjcsppydsptNumber"/>
+    <result column="dl_rbvlxtc_installation_time" jdbcType="TIMESTAMP" property="dlyjcsppydsptInstallationTime"/>
+    <result column="dl_rbvlxtc_specifications" jdbcType="VARCHAR" property="dlyjcsppydsptSpecifications"/>
+    <result column="dl_rbvlxtc_manufacturer" jdbcType="VARCHAR" property="dlyjcsppydsptManufacturer"/>
+    <result column="dl_rbvlxtc_debugging_results" jdbcType="VARCHAR" property="dlyjcsppydsptDebuggingResults"/>
+  </resultMap>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT * FROM dl_jrlqmxd_information WHERE id = #{id}
+  </select>
+
+  <select id="selectByMap" resultMap="BaseResultMap">
+    SELECT * FROM dl_jrlqmxd_information
+    <where>
+      <if test="debuggingResults != null and debuggingResults != ''">
+        AND dl_rbvlxtc_debugging_results = #{debuggingResults}
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    DELETE FROM dl_jrlqmxd_information WHERE id = #{id}
+  </delete>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.dlyjcsppydspt.api.domain.DlJrlqmxdInformation" useGeneratedKeys="true">
+    INSERT INTO dl_jrlqmxd_information (
+      dl_rbvlxtc_installation_position, dl_rbvlxtc_name, dl_rbvlxtc_debugging_personnel,
+      dl_rbvlxtc_number, dl_rbvlxtc_installation_time, dl_rbvlxtc_specifications,
+      dl_rbvlxtc_manufacturer, dl_rbvlxtc_debugging_results
+    ) VALUES (
+      #{dlyjcsppydsptInstallationPosition}, #{dlyjcsppydsptName}, #{dlyjcsppydsptDebuggingPersonnel},
+      #{dlyjcsppydsptNumber}, #{dlyjcsppydsptInstallationTime}, #{dlyjcsppydsptSpecifications},
+      #{dlyjcsppydsptManufacturer}, #{dlyjcsppydsptDebuggingResults}
+    )
+  </insert>
+
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.dlyjcsppydspt.api.domain.DlJrlqmxdInformation" useGeneratedKeys="true">
+    INSERT INTO dl_jrlqmxd_information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dlyjcsppydsptInstallationPosition != null">dl_rbvlxtc_installation_position,</if>
+      <if test="dlyjcsppydsptName != null">dl_rbvlxtc_name,</if>
+      <if test="dlyjcsppydsptDebuggingPersonnel != null">dl_rbvlxtc_debugging_personnel,</if>
+      <if test="dlyjcsppydsptNumber != null">dl_rbvlxtc_number,</if>
+      <if test="dlyjcsppydsptInstallationTime != null">dl_rbvlxtc_installation_time,</if>
+      <if test="dlyjcsppydsptSpecifications != null">dl_rbvlxtc_specifications,</if>
+      <if test="dlyjcsppydsptManufacturer != null">dl_rbvlxtc_manufacturer,</if>
+      <if test="dlyjcsppydsptDebuggingResults != null">dl_rbvlxtc_debugging_results,</if>
+    </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+      <if test="dlyjcsppydsptInstallationPosition != null">#{dlyjcsppydsptInstallationPosition},</if>
+      <if test="dlyjcsppydsptName != null">#{dlyjcsppydsptName},</if>
+      <if test="dlyjcsppydsptDebuggingPersonnel != null">#{dlyjcsppydsptDebuggingPersonnel},</if>
+      <if test="dlyjcsppydsptNumber != null">#{dlyjcsppydsptNumber},</if>
+      <if test="dlyjcsppydsptInstallationTime != null">#{dlyjcsppydsptInstallationTime},</if>
+      <if test="dlyjcsppydsptSpecifications != null">#{dlyjcsppydsptSpecifications},</if>
+      <if test="dlyjcsppydsptManufacturer != null">#{dlyjcsppydsptManufacturer},</if>
+      <if test="dlyjcsppydsptDebuggingResults != null">#{dlyjcsppydsptDebuggingResults},</if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlyjcsppydspt.api.domain.DlJrlqmxdInformation">
+    UPDATE dl_jrlqmxd_information
+    <set>
+      <if test="dlyjcsppydsptInstallationPosition != null">dl_rbvlxtc_installation_position = #{dlyjcsppydsptInstallationPosition},</if>
+      <if test="dlyjcsppydsptName != null">dl_rbvlxtc_name = #{dlyjcsppydsptName},</if>
+      <if test="dlyjcsppydsptDebuggingPersonnel != null">dl_rbvlxtc_debugging_personnel = #{dlyjcsppydsptDebuggingPersonnel},</if>
+      <if test="dlyjcsppydsptNumber != null">dl_rbvlxtc_number = #{dlyjcsppydsptNumber},</if>
+      <if test="dlyjcsppydsptInstallationTime != null">dl_rbvlxtc_installation_time = #{dlyjcsppydsptInstallationTime},</if>
+      <if test="dlyjcsppydsptSpecifications != null">dl_rbvlxtc_specifications = #{dlyjcsppydsptSpecifications},</if>
+      <if test="dlyjcsppydsptManufacturer != null">dl_rbvlxtc_manufacturer = #{dlyjcsppydsptManufacturer},</if>
+      <if test="dlyjcsppydsptDebuggingResults != null">dl_rbvlxtc_debugging_results = #{dlyjcsppydsptDebuggingResults},</if>
+    </set>
+    WHERE id = #{id}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.dlyjcsppydspt.api.domain.DlJrlqmxdInformation">
+    UPDATE dl_jrlqmxd_information SET
+      dl_rbvlxtc_installation_position = #{dlyjcsppydsptInstallationPosition},
+      dl_rbvlxtc_name = #{dlyjcsppydsptName},
+      dl_rbvlxtc_debugging_personnel = #{dlyjcsppydsptDebuggingPersonnel},
+      dl_rbvlxtc_number = #{dlyjcsppydsptNumber},
+      dl_rbvlxtc_installation_time = #{dlyjcsppydsptInstallationTime},
+      dl_rbvlxtc_specifications = #{dlyjcsppydsptSpecifications},
+      dl_rbvlxtc_manufacturer = #{dlyjcsppydsptManufacturer},
+      dl_rbvlxtc_debugging_results = #{dlyjcsppydsptDebuggingResults}
+    WHERE id = #{id}
+  </update>
+
+  <insert id="insertList">
+    INSERT INTO dl_jrlqmxd_information (
+      dl_rbvlxtc_installation_position, dl_rbvlxtc_name, dl_rbvlxtc_debugging_personnel,
+      dl_rbvlxtc_number, dl_rbvlxtc_installation_time, dl_rbvlxtc_specifications,
+      dl_rbvlxtc_manufacturer, dl_rbvlxtc_debugging_results
+    ) VALUES
+    <foreach collection="list" item="item" separator=",">
+    (
+      #{item.dlyjcsppydsptInstallationPosition}, #{item.dlyjcsppydsptName}, #{item.dlyjcsppydsptDebuggingPersonnel},
+      #{item.dlyjcsppydsptNumber}, #{item.dlyjcsppydsptInstallationTime}, #{item.dlyjcsppydsptSpecifications},
+      #{item.dlyjcsppydsptManufacturer}, #{item.dlyjcsppydsptDebuggingResults}
+    )
+    </foreach>
+  </insert>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlyjcsppydspt.api.mapper.DlEkjaudInformationMapper">
+  <resultMap id="BaseResultMap" type="com.dlyjcsppydspt.api.domain.DlEkjaudInformation">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="dl_nojsmbk_rated_power" jdbcType="VARCHAR" property="dlyjcsppydsptRatedPower"/>
+    <result column="dl_nojsmbk_number" jdbcType="VARCHAR" property="dlyjcsppydsptNumber"/>
+    <result column="dl_nojsmbk_component_type" jdbcType="VARCHAR" property="dlyjcsppydsptComponentType"/>
+    <result column="dl_nojsmbk_debugging_time" jdbcType="TIMESTAMP" property="dlyjcsppydsptDebuggingTime"/>
+    <result column="dl_nojsmbk_rated_voltage" jdbcType="VARCHAR" property="dlyjcsppydsptRatedVoltage"/>
+    <result column="dl_nojsmbk_rated_current" jdbcType="VARCHAR" property="dlyjcsppydsptRatedCurrent"/>
+    <result column="dl_nojsmbk_installation_position" jdbcType="VARCHAR" property="dlyjcsppydsptInstallationPosition"/>
+    <result column="dl_nojsmbk_component_name" jdbcType="VARCHAR" property="dlyjcsppydsptComponentName"/>
+    <result column="dl_nojsmbk_debugging_results" jdbcType="VARCHAR" property="dlyjcsppydsptDebuggingResults"/>
+  </resultMap>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT * FROM dl_ekjaud_information WHERE id = #{id}
+  </select>
+
+  <select id="selectByMap" resultMap="BaseResultMap">
+    SELECT * FROM dl_ekjaud_information
+    <where>
+      <if test="installationPosition != null and installationPosition != ''">
+        AND dl_nojsmbk_installation_position = #{installationPosition}
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    DELETE FROM dl_ekjaud_information WHERE id = #{id}
+  </delete>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.dlyjcsppydspt.api.domain.DlEkjaudInformation" useGeneratedKeys="true">
+    INSERT INTO dl_ekjaud_information (
+      dl_nojsmbk_rated_power, dl_nojsmbk_number, dl_nojsmbk_component_type,
+      dl_nojsmbk_debugging_time, dl_nojsmbk_rated_voltage, dl_nojsmbk_rated_current,
+      dl_nojsmbk_installation_position, dl_nojsmbk_component_name, dl_nojsmbk_debugging_results
+    ) VALUES (
+      #{dlyjcsppydsptRatedPower}, #{dlyjcsppydsptNumber}, #{dlyjcsppydsptComponentType},
+      #{dlyjcsppydsptDebuggingTime}, #{dlyjcsppydsptRatedVoltage}, #{dlyjcsppydsptRatedCurrent},
+      #{dlyjcsppydsptInstallationPosition}, #{dlyjcsppydsptComponentName}, #{dlyjcsppydsptDebuggingResults}
+    )
+  </insert>
+
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.dlyjcsppydspt.api.domain.DlEkjaudInformation" useGeneratedKeys="true">
+    INSERT INTO dl_ekjaud_information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dlyjcsppydsptRatedPower != null">dl_nojsmbk_rated_power,</if>
+      <if test="dlyjcsppydsptNumber != null">dl_nojsmbk_number,</if>
+      <if test="dlyjcsppydsptComponentType != null">dl_nojsmbk_component_type,</if>
+      <if test="dlyjcsppydsptDebuggingTime != null">dl_nojsmbk_debugging_time,</if>
+      <if test="dlyjcsppydsptRatedVoltage != null">dl_nojsmbk_rated_voltage,</if>
+      <if test="dlyjcsppydsptRatedCurrent != null">dl_nojsmbk_rated_current,</if>
+      <if test="dlyjcsppydsptInstallationPosition != null">dl_nojsmbk_installation_position,</if>
+      <if test="dlyjcsppydsptComponentName != null">dl_nojsmbk_component_name,</if>
+      <if test="dlyjcsppydsptDebuggingResults != null">dl_nojsmbk_debugging_results,</if>
+    </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+      <if test="dlyjcsppydsptRatedPower != null">#{dlyjcsppydsptRatedPower},</if>
+      <if test="dlyjcsppydsptNumber != null">#{dlyjcsppydsptNumber},</if>
+      <if test="dlyjcsppydsptComponentType != null">#{dlyjcsppydsptComponentType},</if>
+      <if test="dlyjcsppydsptDebuggingTime != null">#{dlyjcsppydsptDebuggingTime},</if>
+      <if test="dlyjcsppydsptRatedVoltage != null">#{dlyjcsppydsptRatedVoltage},</if>
+      <if test="dlyjcsppydsptRatedCurrent != null">#{dlyjcsppydsptRatedCurrent},</if>
+      <if test="dlyjcsppydsptInstallationPosition != null">#{dlyjcsppydsptInstallationPosition},</if>
+      <if test="dlyjcsppydsptComponentName != null">#{dlyjcsppydsptComponentName},</if>
+      <if test="dlyjcsppydsptDebuggingResults != null">#{dlyjcsppydsptDebuggingResults},</if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlyjcsppydspt.api.domain.DlEkjaudInformation">
+    UPDATE dl_ekjaud_information
+    <set>
+      <if test="dlyjcsppydsptRatedPower != null">dl_nojsmbk_rated_power = #{dlyjcsppydsptRatedPower},</if>
+      <if test="dlyjcsppydsptNumber != null">dl_nojsmbk_number = #{dlyjcsppydsptNumber},</if>
+      <if test="dlyjcsppydsptComponentType != null">dl_nojsmbk_component_type = #{dlyjcsppydsptComponentType},</if>
+      <if test="dlyjcsppydsptDebuggingTime != null">dl_nojsmbk_debugging_time = #{dlyjcsppydsptDebuggingTime},</if>
+      <if test="dlyjcsppydsptRatedVoltage != null">dl_nojsmbk_rated_voltage = #{dlyjcsppydsptRatedVoltage},</if>
+      <if test="dlyjcsppydsptRatedCurrent != null">dl_nojsmbk_rated_current = #{dlyjcsppydsptRatedCurrent},</if>
+      <if test="dlyjcsppydsptInstallationPosition != null">dl_nojsmbk_installation_position = #{dlyjcsppydsptInstallationPosition},</if>
+      <if test="dlyjcsppydsptComponentName != null">dl_nojsmbk_component_name = #{dlyjcsppydsptComponentName},</if>
+      <if test="dlyjcsppydsptDebuggingResults != null">dl_nojsmbk_debugging_results = #{dlyjcsppydsptDebuggingResults},</if>
+    </set>
+    WHERE id = #{id}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.dlyjcsppydspt.api.domain.DlEkjaudInformation">
+    UPDATE dl_ekjaud_information SET
+      dl_nojsmbk_rated_power = #{dlyjcsppydsptRatedPower},
+      dl_nojsmbk_number = #{dlyjcsppydsptNumber},
+      dl_nojsmbk_component_type = #{dlyjcsppydsptComponentType},
+      dl_nojsmbk_debugging_time = #{dlyjcsppydsptDebuggingTime},
+      dl_nojsmbk_rated_voltage = #{dlyjcsppydsptRatedVoltage},
+      dl_nojsmbk_rated_current = #{dlyjcsppydsptRatedCurrent},
+      dl_nojsmbk_installation_position = #{dlyjcsppydsptInstallationPosition},
+      dl_nojsmbk_component_name = #{dlyjcsppydsptComponentName},
+      dl_nojsmbk_debugging_results = #{dlyjcsppydsptDebuggingResults}
+    WHERE id = #{id}
+  </update>
+
+  <insert id="insertList">
+    INSERT INTO dl_ekjaud_information (
+      dl_nojsmbk_rated_power, dl_nojsmbk_number, dl_nojsmbk_component_type,
+      dl_nojsmbk_debugging_time, dl_nojsmbk_rated_voltage, dl_nojsmbk_rated_current,
+      dl_nojsmbk_installation_position, dl_nojsmbk_component_name, dl_nojsmbk_debugging_results
+    ) VALUES
+    <foreach collection="list" item="item" separator=",">
+    (
+      #{item.dlyjcsppydsptRatedPower}, #{item.dlyjcsppydsptNumber}, #{item.dlyjcsppydsptComponentType},
+      #{item.dlyjcsppydsptDebuggingTime}, #{item.dlyjcsppydsptRatedVoltage}, #{item.dlyjcsppydsptRatedCurrent},
+      #{item.dlyjcsppydsptInstallationPosition}, #{item.dlyjcsppydsptComponentName}, #{item.dlyjcsppydsptDebuggingResults}
+    )
+    </foreach>
+  </insert>
+</mapper>
